@@ -29,17 +29,21 @@ export default function SortProducts() {
     };
 
     return (
-        <div className="w-full flex justify-center mb-4">
-        <select
-            value={searchParams.get("sort") || ""}
-            onChange={handleSortChange}
-            className="text-left bg-white border border-gray-300 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500"
-        >
-            <option value="">Select Sort Option</option>
-            <option value="Highest to Lowest">Highest to Lowest</option>
-            <option value="Lowest to Highest">Lowest to Highest</option>
-            <option value="Latest">Latest</option>
-        </select>
-        </div>
+        <>
+            <div className="w-full flex justify-center mb-4">
+                <select
+                    value={searchParams.get("sort") || ""}
+                    onChange={handleSortChange}
+                    className="text-left bg-white border border-gray-300 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                >
+                    <option value="">Select Sort Option</option>
+                    <option value="Highest to Lowest">Highest to Lowest</option>
+                    <option value="Lowest to Highest">Lowest to Highest</option>
+                    <option value="Latest">Latest</option>
+                </select>
+            </div>
+            <div ref={productListRef} id="product-list"></div>
+        </>
+
     );
 }
