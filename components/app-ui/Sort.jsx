@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { useRef } from "react";
 
 
 export default function SortProducts() {
