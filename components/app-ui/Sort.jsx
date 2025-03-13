@@ -7,6 +7,7 @@ export default function SortProducts() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const pathname = usePathname();
+    const productListRef = useRef(null);
 
     const handleSortChange = (e) => {
         const sortOption = e.target.value;
@@ -18,7 +19,12 @@ export default function SortProducts() {
         params.delete("sort");
         }
 
-        router.push(`${pathname}?${params.toString()}`);
+        router.replace(`${pathname}?${params.toString()}`);
+        setTimeout(() => {
+            if (productListRef.current) {
+                productListRef.current.scrollIntoView({ behavior: "smooth" });
+            }
+        }, 100);
     };
 
     return (
