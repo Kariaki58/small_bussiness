@@ -4,6 +4,7 @@ import AddToCart from "./AddToCart";
 import SortProducts from "./Sort";
 import { Suspense } from "react";
 import { PaginationDemo } from "./pagination";
+import slugify from "slugify";
 
 export default async function ProductList({ searchParams }) {
     try {
@@ -37,7 +38,7 @@ export default async function ProductList({ searchParams }) {
                                 key={product._id} 
                                 className="bg-white shadow-lg rounded-lg p-4 transition-transform transform hover:scale-105 hover:shadow-xl"
                             >
-                                <Link href={`/product/${product._id}`}>
+                                <Link href={`/product/${slugify(product.name)}`}>
                                     <div className="w-full h-72 relative">
                                         <Image 
                                             src={product.images[0]} 
