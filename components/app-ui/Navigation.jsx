@@ -16,9 +16,13 @@ export default function Navigation() {
     const [openCart, setOpenCart] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [showSearch, setShowSearch] = useState(false);
-    const { cart } = useCartStore();
+    const { cart, initializeCart } = useCartStore();
     const router = useRouter();
     const searchParams = useSearchParams();
+
+    useEffect(() => {
+        initializeCart();
+    }, []);
 
     useEffect(() => {
         const query = searchParams.get("search") || "";
