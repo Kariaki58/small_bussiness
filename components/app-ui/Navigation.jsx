@@ -42,13 +42,15 @@ export default function Navigation() {
     
 
     return (
-        <>
-        <nav className="bg-gray-200 px-5 py-3 rounded-full mt-5 max-w-screen-xl mx-auto flex justify-between items-center relative">
+        <div className="md:mx-2">
+        <nav className="bg-white shadow-md px-5 py-3 rounded-none md:rounded-full mt-0 md:mt-5 max-w-screen-xl mx-auto flex justify-between items-center relative">
             <div className="flex items-center gap-2">
                 <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
                     <Image src={menu} alt="menu" width={30} height={30} />
                 </button>
-                <Image alt="company logo" src={logo} width={60} height={60} />
+                <Link href="/">
+                    <Image alt="company logo" src="https://res.cloudinary.com/dviwggb7g/image/upload/v1732468904/images/IMG-20241124-WA0001_gvv6dy.jpg" width={60} height={60} />
+                </Link>
             </div>
 
             <ul className="hidden md:flex gap-10">
@@ -69,13 +71,15 @@ export default function Navigation() {
                     />
                 </div>
                 
-                <div className="relative">
+                <div className="relative" 
+                    onClick={() => setOpenCart(true)}
+
+                >
                     <Image
                         alt="cart icon"
                         src={cartIcon}
                         width={35}
                         height={35}
-                        onClick={() => setOpenCart(true)}
                         className="cursor-pointer"
                     />
                     <span className="text-sm absolute -top-2 -right-2 bg-fuchsia-500 text-white px-2 py-1 rounded-full">
@@ -114,6 +118,6 @@ export default function Navigation() {
                     />
                 </div>
             )}
-        </>
+        </div>
     );
 }

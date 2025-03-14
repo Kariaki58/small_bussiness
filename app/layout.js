@@ -1,6 +1,7 @@
 import { Josefin_Sans } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react"
+import SocketInitializer from "@/components/SocketInitializer";
 
 const josefin = Josefin_Sans({
   subsets: ["latin"],
@@ -36,6 +37,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${josefin.className} antialiased`}
       >
+        <SocketInitializer />
         <Analytics/>
         {children}
       </body>
