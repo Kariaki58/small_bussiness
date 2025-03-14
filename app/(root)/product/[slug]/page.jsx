@@ -9,6 +9,52 @@ import Head from "next/head";
 import ProductContent from "@/components/app-ui/product-page/ProductContent";
 import ProductSchema from "@/components/app-ui/product-page/ProductSchema";
 
+export async function generateMetadata({ params }) {
+    try {
+        const { slug } = await params
+        const response = await fetch(`${process.env.BACKEND_URL}/products/${slug}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to fetch product data: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        const product = data?.product;
+
+        if (!product) {
+            throw new Error("Product not found");
+        }
+
+        return {
+            title: `${product.name} | Poshwears`,
+            description: product.description || "Discover high-quality fashion items from Poshwears.",
+            openGraph: {
+                title: `${product.name} | Poshwears`,
+                description: product.description || "Discover high-quality fashion items from Poshwears.",
+                url: `https://www.poshwears.ng/product/${slug}`,
+                images: [
+                    {
+                        url: product.images[0],
+                        width: 800,
+                        height: 800,
+                        alt: product.name,
+                    },
+                ],
+            },
+        };
+    } catch (error) {
+
+        // Return default metadata if there's an error
+        return {
+        };
+    }
+}
+
 export default async function ProductPage({ params }) {
         const { slug } = await params;
         let data = [];
