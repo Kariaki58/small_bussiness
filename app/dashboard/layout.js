@@ -1,4 +1,4 @@
-import { AppSidebar } from "@/components/app-sidebar"
+// import { AppSidebar } from "@/components/app-sidebar"
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -24,7 +24,7 @@ export default function DashboardLayout({ children }) {
                     "--sidebar-width": "19rem"
                     }
                 }>
-                <AppSidebar />
+                {/* <AppSidebar /> */}
                 <SidebarInset>
                     <header className="flex h-16 shrink-0 items-center gap-2 px-4">
                     <SidebarTrigger className="-ml-1" />
