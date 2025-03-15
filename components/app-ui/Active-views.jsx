@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { Noto_Sans } from "next/font/google";
@@ -10,16 +9,20 @@ const notoSans = Noto_Sans({
     variable: "--font-noto-sans",
 });
 
+
 export default function ActiveViews() {
-    const [currentVisitors, setCurrentVisitors] = useState(0);
+    const [userCount, setUserCount] = useState(0);
+    const [currentUser, setCurrentUser] = useState(null);
 
     useEffect(() => {
-        const socket = io("http://localhost:3001", {
-            path: "/api/socket",
-        });
+        const socket = io("https://realtime-get-active-users.onrender.com");
 
         socket.on("userCount", (count) => {
-            setCurrentVisitors(count);
+            setUserCount(count);
+        });
+
+        socket.on("currentUser", (user) => {
+            setCurrentUser(user);
         });
 
         return () => {
@@ -31,7 +34,7 @@ export default function ActiveViews() {
         <div className="flex gap-3 items-center">
             <div className="breathing-dot"></div>
             <p className={`${notoSans.className} antialiased`}>
-                {currentVisitors} {currentVisitors === 1 ? "person is" : "people are"} currently shopping
+                {userCount} {userCount === 1 ? "person is" : "people are"} currently shopping
             </p>
 
         </div>
