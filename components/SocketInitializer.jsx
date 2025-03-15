@@ -6,5 +6,5 @@ export default function SocketInitializer() {
         fetch("/api/socket");
     }, []);
 
-    return null; // No UI needed
+    return null;
 }
